@@ -1,6 +1,13 @@
 {
+  "name": "portfolio-backend",
+  "type": "module",
   "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.682.0",
+    "@aws-sdk/client-lambda": "^3.670.0",
+    "@aws-sdk/client-s3": "^3.670.0",
     "cors": "^2.8.5",
-    "express": "^4.21.1"
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.7.1"
   }
 }
