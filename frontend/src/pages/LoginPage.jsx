@@ -55,22 +55,28 @@ const LoginPage = () => {
           "Accept": "application/json",
         },
         body: JSON.stringify({
-          action: "signUp",
-          email,
-          password,
+          "action": "signUp",
+          "email": email.trim(),
+          "password": password,
         }),
       });
-
+  console.log( JSON.stringify({
+    "action": "signUp",
+    "email": email.trim(),
+    "password": password,
+  }));
       if (!response.ok) {
-        throw new Error("Sign up failed");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Sign up failed");
       }
-
+  
       await response.json();
       navigate("/confirm", { state: { email } });
     } catch (error) {
       alert(`Sign up failed: ${error.message}`);
     }
   };
+  
 
   return (
     <div className="loginForm">

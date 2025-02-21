@@ -5,12 +5,15 @@ import {
   ConfirmSignUpCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 
+//##############################################################################
 // Create a Cognito client instance
 const cognitoClient = new CognitoIdentityProviderClient({
   region: process.env.AWS_REGION,
 });
 
+//##############################################################################
 // Sign-in function
+
 const signIn = async (email, password) => {
   const params = {
     AuthFlow: "USER_PASSWORD_AUTH",
@@ -30,7 +33,9 @@ const signIn = async (email, password) => {
   }
 };
 
+//##############################################################################
 // Sign-up function
+/*
 const signUp = async (email, password) => {
   const params = {
     ClientId: process.env.CLIENT_ID,
@@ -52,7 +57,33 @@ const signUp = async (email, password) => {
     throw error;
   }
 };
+*/
 
+const signUp = ({ clientId, username, password, email}) => {
+
+const command = new SignUpCommand({
+  ClientId: clientId,
+  Username: username,
+  Password: password,
+  UserAttributes: [{Name:"email", Value: email}],
+});
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//##############################################################################
 // Confirm sign-up function
 const confirmSignUp = async (email, code) => {
   const params = {
@@ -69,7 +100,7 @@ const confirmSignUp = async (email, code) => {
     throw error;
   }
 };
-
+//##############################################################################
 // Lambda handler
 export const handler = async (event) => {
   const { action, username, password, email, code } = JSON.parse(event.body);

@@ -1,3 +1,4 @@
+/*
 import { S3Client, ListObjectsCommand } from '@aws-sdk/client-s3';
 import dotenv from 'dotenv';
 
@@ -59,3 +60,17 @@ getImages().then(images => {
 }).catch(err => {
     console.error(err);
 });
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
