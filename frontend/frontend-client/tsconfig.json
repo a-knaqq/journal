@@ -5,9 +5,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
@@ -15,6 +13,9 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": [
+    "src/**/*.ts",        // Include all TypeScript files in the src folder and subdirectories
+    "src/**/*.tsx"        // Include all TypeScript JSX files in the src folder and subdirectories
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

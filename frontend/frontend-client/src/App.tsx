@@ -1,12 +1,12 @@
+// src/App.tsx
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/loginPage";
 import HomePage from "./pages/homePage";
 import ConfirmUserPage from "./pages/confirmUserPage";
-import Page1 from "./pages/page1";
-import Page2 from "./pages/page2";
-import Page3 from "./pages/page3";
-import Page4 from "./pages/page4";
-import Page5 from "./pages/page5";
+import ImageGalleryPage from "./pages/imageGalleryPage";
+import StravaPage from "./pages/StravaPage.jsx";
+import RideTracking from "./pages/RideTrackingPage";
+import NotificationsPage from "./pages/NotificationsPage";
 import Layout from "./components/Layout.jsx";
 import "./output.css";
 import "./App.css";
@@ -15,6 +15,12 @@ const App = () => {
   const isAuthenticated = () => {
     const accessToken = sessionStorage.getItem("accessToken");
     return !!accessToken;
+  };
+
+  // Define the onCardSelect function
+  const handleCardSelect = () => {
+    // Any logic you need when a card is selected, e.g., closing overlays, logging, etc.
+    console.log("Card was selected!");
   };
 
   return (
@@ -40,7 +46,8 @@ const App = () => {
           element={
             isAuthenticated() ? (
               <Layout>
-                <HomePage />
+                {/* Pass handleCardSelect as a prop to HomePage */}
+                <HomePage onCardSelect={handleCardSelect} />
               </Layout>
             ) : (
               <Navigate replace to="/login" />
@@ -48,11 +55,11 @@ const App = () => {
           }
         />
         <Route
-          path="/page1"
+          path="/gallery"
           element={
             isAuthenticated() ? (
               <Layout>
-                <Page1 />
+                <ImageGalleryPage />
               </Layout>
             ) : (
               <Navigate replace to="/login" />
@@ -60,11 +67,11 @@ const App = () => {
           }
         />
         <Route
-          path="/page2"
+          path="/strava"
           element={
             isAuthenticated() ? (
               <Layout>
-                <Page2 />
+                <StravaPage />
               </Layout>
             ) : (
               <Navigate replace to="/login" />
@@ -72,11 +79,11 @@ const App = () => {
           }
         />
         <Route
-          path="/page3"
+          path="/track-rides"
           element={
             isAuthenticated() ? (
               <Layout>
-                <Page3 />
+                <RideTracking />
               </Layout>
             ) : (
               <Navigate replace to="/login" />
@@ -84,23 +91,11 @@ const App = () => {
           }
         />
         <Route
-          path="/page4"
+          path="/notifications"
           element={
             isAuthenticated() ? (
               <Layout>
-                <Page4 />
-              </Layout>
-            ) : (
-              <Navigate replace to="/login" />
-            )
-          }
-        />
-        <Route
-          path="/page5"
-          element={
-            isAuthenticated() ? (
-              <Layout>
-                <Page5 />
+                <NotificationsPage />
               </Layout>
             ) : (
               <Navigate replace to="/login" />

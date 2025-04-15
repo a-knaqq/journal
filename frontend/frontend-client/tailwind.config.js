@@ -1,9 +1,12 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
+// tailwind.config.js
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      perspective: {
+        '1000': '1000px',
+      }
+    },
   },
   plugins: [],
 }
-
